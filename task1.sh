@@ -49,6 +49,8 @@ function TEXTWATERMARK(){
 #批量重命名（统一添加文件名前缀或后缀，不影响原始文件扩展名）
 function rename(){
 	for i in *;do
+		type=${i##*.}
+        	if [[ ${type} != "jpeg" && ${type} != "png" && ${type} != "svg" ]]; then continue; fi;
 		mv "${i}" "$1""${i}"
 		echo "${i} is renamed to $1${i}."
 	done
@@ -56,6 +58,7 @@ function rename(){
 function rename2(){
 	for i in *;do
 		type=${i##*.}
+        	if [[ ${type} != "jpeg" && ${type} != "png" && ${type} != "svg" ]]; then continue; fi;
 		filename2=${i%.*}$1"."${type}
 		mv "${i}" "${filename2}"
 		echo "${i} is renamed to ${filename2}"
